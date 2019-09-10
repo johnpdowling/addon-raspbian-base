@@ -13,6 +13,7 @@ ENV \
     TERM="xterm-256color"
 
 # Copy root filesystem
+COPY qemu-arm-static /usr/bin
 COPY rootfs /
 
 ARG BUILD_ARCH=armhf
