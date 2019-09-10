@@ -29,9 +29,9 @@ RUN \
     \
     && apt-get install -y --no-install-recommends \
         ca-certificates=20180409 \
-        curl=7.58.0-2ubuntu3.7 \
-        jq=1.5+dfsg-2 \
-        tzdata=2019b-0ubuntu0.18.04 \
+        curl \
+        jq \
+        tzdata \
         yq \
     \
     && S6_ARCH="${BUILD_ARCH}" \
