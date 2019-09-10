@@ -15,9 +15,7 @@ ENV \
 # Copy root filesystem
 COPY rootfs /
 
-# Copy yq
 ARG BUILD_ARCH=armhf
-COPY bin/yq_${BUILD_ARCH} /usr/bin/yq
 
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
