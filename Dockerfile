@@ -2,6 +2,8 @@ ARG BUILD_FROM=armhf/debian:stretch-slim
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
+COPY qemu-arm-static /usr/bin
+
 # Environment variables
 ENV \
     DEBIAN_FRONTEND="noninteractive" \
@@ -13,7 +15,6 @@ ENV \
     TERM="xterm-256color"
 
 # Copy root filesystem
-COPY qemu-arm-static /usr/bin
 COPY rootfs /
 
 ARG BUILD_ARCH=armhf
