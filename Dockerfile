@@ -3,7 +3,7 @@ FROM armhf/debian:stretch-slim
 ARG BUILD_FROM=armhf/debian:stretch-slim
 # hadolint ignore=DL3006
 
-COPY qemu-arm-static /usr/bin
+#COPY qemu-arm-static /usr/bin
 
 # Environment variables
 ENV \
@@ -25,7 +25,6 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Install base system
 RUN \
-    add-apt-repository ppa:rmescandon/yq \
     apt-get update \
     \
     && apt-get install -y --no-install-recommends \
@@ -34,8 +33,15 @@ RUN \
         jq \
         tzdata \
         yq \
-    \
-    && S6_ARCH="${BUILD_ARCH}" \
+        software-properties-common
+
+RUN \
+    add-apt-repository ppa:rmescandon/yq && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+       yq
+
+RUN S6_ARCH="${BUILD_ARCH}" \
     && if [ "${BUILD_ARCH}" = "i386" ]; then S6_ARCH="x86"; fi \
     && if [ "${BUILD_ARCH}" = "armv7" ]; then S6_ARCH="arm"; fi \
     \
