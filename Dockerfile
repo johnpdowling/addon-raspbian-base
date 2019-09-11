@@ -32,7 +32,8 @@ RUN \
         jq \
         tzdata \
         software-properties-common \
-        apt-transport-https
+        apt-transport-https \
+        gnupg
 
 RUN \
     add-apt-repository ppa:rmescandon/yq && \
