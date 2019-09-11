@@ -25,8 +25,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Install base system
 RUN \
-    apt-get update \
-    \
+    apt-get update 
+RUN    \
     && apt-get install -y --no-install-recommends \
         ca-certificates=20180409 \
         curl \
