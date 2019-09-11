@@ -1,6 +1,7 @@
+FROM armhf/debian:stretch-slim
+
 ARG BUILD_FROM=armhf/debian:stretch-slim
 # hadolint ignore=DL3006
-FROM ${BUILD_FROM}
 
 COPY qemu-arm-static /usr/bin
 
