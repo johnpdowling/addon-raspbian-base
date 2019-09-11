@@ -25,15 +25,15 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Install base system
 RUN \
-    apt-get update 
-RUN    \
-    && apt-get install -y --no-install-recommends \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
         ca-certificates=20180409 \
         curl \
         jq \
         tzdata \
         yq \
-        software-properties-common
+        software-properties-common \
+        apt-transport-https
 
 RUN \
     add-apt-repository ppa:rmescandon/yq && \
