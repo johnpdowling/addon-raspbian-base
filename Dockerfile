@@ -27,7 +27,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN \
     apt-get update && \
     apt-get install -y --no-install-recommends \
-        ca-certificates=20180409 \
+        ca-certificates \
         curl \
         jq \
         tzdata \
