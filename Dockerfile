@@ -3,7 +3,7 @@ FROM armhf/debian:stretch-slim
 ARG BUILD_FROM=armhf/debian:stretch-slim
 # hadolint ignore=DL3006
 
-#COPY qemu-arm-static /usr/bin
+COPY qemu-arm-static /usr/bin
 
 # Environment variables
 ENV \
