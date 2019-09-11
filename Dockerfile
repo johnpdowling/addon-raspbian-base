@@ -31,7 +31,6 @@ RUN \
         curl \
         jq \
         tzdata \
-        yq \
         software-properties-common \
         apt-transport-https
 
