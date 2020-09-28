@@ -1,6 +1,5 @@
-FROM arm32v6/debian:buster-slim
-
-ARG BUILD_FROM=arm32v6/debian:buster-slim
+ARG BUILD_FROM=armhf/debian:stretch-slim
+FROM ${BUILD_FROM}
 # hadolint ignore=DL3006
 
 COPY qemu-arm-static /usr/bin
