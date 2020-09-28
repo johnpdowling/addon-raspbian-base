@@ -1,6 +1,6 @@
-FROM armhf/debian:stretch-slim
+FROM armhf/debian:buster-slim
 
-ARG BUILD_FROM=armhf/debian:stretch-slim
+ARG BUILD_FROM=armhf/debian:buster-slim
 # hadolint ignore=DL3006
 
 COPY qemu-arm-static /usr/bin
@@ -33,20 +33,20 @@ RUN \
         tzdata
 
 RUN \
-    curl -o /bin/yq https://github.com/mikefarah/yq/releases/download/2.4.0/yq_linux_arm
+    curl -o /bin/yq https://github.com/mikefarah/yq/releases/download/3.4.0/yq_linux_arm
 
 RUN S6_ARCH="${BUILD_ARCH}" \
     && if [ "${BUILD_ARCH}" = "i386" ]; then S6_ARCH="x86"; fi \
     && if [ "${BUILD_ARCH}" = "armv7" ]; then S6_ARCH="arm"; fi \
     \
-    && curl -L -s "https://github.com/just-containers/s6-overlay/releases/download/v1.22.1.0/s6-overlay-${S6_ARCH}.tar.gz" \
+    && curl -L -s "https://github.com/just-containers/s6-overlay/releases/download/v2.1.0.0/s6-overlay-${S6_ARCH}.tar.gz" \
         | tar zxvf - -C / \
     \
     && mkdir -p /etc/fix-attrs.d \
     && mkdir -p /etc/services.d \
     \
     && curl -J -L -o /tmp/bashio.tar.gz \
-        "https://github.com/hassio-addons/bashio/archive/v0.4.1.tar.gz" \
+        "https://github.com/hassio-addons/bashio/archive/v0.9.0.tar.gz" \
     && mkdir /tmp/bashio \
     && tar zxvf \
         /tmp/bashio.tar.gz \
