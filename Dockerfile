@@ -25,6 +25,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Install base system
 RUN \
     apt-get update && \
+    apt-get dist-upgrade -y && \
     apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
