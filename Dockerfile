@@ -36,19 +36,19 @@ RUN \
     update-ca-certificates
 
 RUN \
-    curl -o /bin/yq https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_arm
+    curl -ko /bin/yq https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_arm
 
 RUN S6_ARCH="${BUILD_ARCH}" \
     && if [ "${BUILD_ARCH}" = "i386" ]; then S6_ARCH="x86"; fi \
     && if [ "${BUILD_ARCH}" = "armv7" ]; then S6_ARCH="arm"; fi \
     \
-    && curl -L -s "https://github.com/just-containers/s6-overlay/releases/download/v2.1.0.2/s6-overlay-${S6_ARCH}.tar.gz" \
+    && curl -L -ks "https://github.com/just-containers/s6-overlay/releases/download/v2.1.0.2/s6-overlay-${S6_ARCH}.tar.gz" \
         | tar zxvf - -C / \
     \
     && mkdir -p /etc/fix-attrs.d \
     && mkdir -p /etc/services.d \
     \
-    && curl -J -L -o /tmp/bashio.tar.gz \
+    && curl -J -L -ko /tmp/bashio.tar.gz \
         "https://github.com/hassio-addons/bashio/archive/v0.9.0.tar.gz" \
     && mkdir /tmp/bashio \
     && tar zxvf \
