@@ -1,4 +1,5 @@
-ARG BUILD_FROM=armhf/debian:stretch-slim
+#ARG BUILD_FROM=armhf/debian:stretch-slim
+ARG BUILD_FROM=arm32v7/debian:buster-slim
 FROM ${BUILD_FROM}
 # hadolint ignore=DL3006
 
@@ -17,7 +18,8 @@ ENV \
 # Copy root filesystem
 COPY rootfs /
 
-ARG BUILD_ARCH=armhf
+#ARG BUILD_ARCH=armhf
+ARG BUILD_ARCH=armv7
 
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -33,13 +35,13 @@ RUN \
         tzdata
 
 RUN \
-    curl -o /bin/yq https://github.com/mikefarah/yq/releases/download/3.4.0/yq_linux_arm
+    curl -o /bin/yq https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_arm
 
 RUN S6_ARCH="${BUILD_ARCH}" \
     && if [ "${BUILD_ARCH}" = "i386" ]; then S6_ARCH="x86"; fi \
     && if [ "${BUILD_ARCH}" = "armv7" ]; then S6_ARCH="arm"; fi \
     \
-    && curl -L -s "https://github.com/just-containers/s6-overlay/releases/download/v2.1.0.0/s6-overlay-${S6_ARCH}.tar.gz" \
+    && curl -L -s "https://github.com/just-containers/s6-overlay/releases/download/v2.1.0.2/s6-overlay-${S6_ARCH}.tar.gz" \
         | tar zxvf - -C / \
     \
     && mkdir -p /etc/fix-attrs.d \
